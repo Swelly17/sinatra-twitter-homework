@@ -50,10 +50,12 @@ get '/tweets/:username' do
   # The tweets are stored in an Array called @my_tweets
   @my_tweets = Twitter.user_timeline(@username)
 
+
   #Collecting individual bird info
   fake_bird_info = Twitter.user(@username)
   @name = fake_bird_info[:name]
   @handle = fake_bird_info[:screen_name]
   @location = fake_bird_info[:location]
+  @description = fake_bird_info[:description]
   erb (:tweets)
 end

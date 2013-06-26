@@ -4,17 +4,20 @@
   <button>Search</button>
 </form>
 
-<h2 style="color: cyan">@<%= @username.capitalize %>'s Tweets</h2>
+<center><h2 style="color: cyan">@<%= @username.capitalize %>'s Tweets</h2>
 <p>
   <b><a href="http://twitter.com/<%=@username%>">
     <%=@name%>:
   </b></a><%=@location%>
-</p>
+  <p><%= @description %></p>
+</p></center><br />
 <% @my_tweets.each do |tweet| %>
     <p>
       <%= tweet[:text] %>
       <a href="http://twitter.com/<%=@username%>/status/<%=tweet[:id]%>">
         (Tweet Link)
-      </a>
+      </a><% tweet[:media].each do |media_piece| %>
+      <img src="<%= media_piece[:media_url] %>" width="200px"/>
+      <% end %>
     </p>
   <% end %>
