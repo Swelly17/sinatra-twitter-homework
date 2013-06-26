@@ -1,0 +1,15 @@
+<h1>Enter a Twitter User:</h1>
+<form action="/tweets" method="post">
+  <input type="text" name="<%= @username %>" value=" ">
+  <button>Search</button>
+</form>
+
+<h3><%= @username.capitalize %>'s Tweets</h3>
+<% @my_tweets.each do |tweet| %>
+    <p>
+      <%= tweet[:text] %>
+      <a href="http://twitter.com/<%=@username%>/status/<%=tweet[:id]%>">
+        (Tweet Link)
+      </a>
+    </p>
+  <% end %>

@@ -12,6 +12,7 @@ require 'sinatra/reloader' if development?
 
 # Dotenv (https://github.com/bkeepers/dotenv) lets us keep some variables in
 # a configuration file called .env that we don't check into Git.
+# Security measures for keeping API keys secret
 require 'dotenv'
 
 # This is the Twitter API access gem
@@ -38,6 +39,10 @@ configure do
   end
 end
 
+get '/' do
+   "hello"
+end
+
 get '/tweets/:username' do
   # This gets the username from the params hash
   @username = params[:username]
@@ -46,10 +51,6 @@ get '/tweets/:username' do
   # The tweets are stored in an Array called @my_tweets
   @my_tweets = Twitter.user_timeline(@username)
 
-  # The following 3 lines will output the text from each tweet from a user
-  @my_tweets.each do |tweet|
-    tweet[:text]
-  end
 
-  erb :tweets
+  erb (:tweets)
 end
