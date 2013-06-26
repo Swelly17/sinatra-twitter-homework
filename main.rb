@@ -39,8 +39,14 @@ configure do
   end
 end
 
-get '/' do
-   "hello"
+get '/form' do
+  @username = params[:username]
+  if @username
+    redirect to("/#{@username}")
+  else
+    puts "Enter a valid username"
+    end
+  erb :tweets
 end
 
 get '/tweets/:username' do
